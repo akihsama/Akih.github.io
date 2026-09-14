@@ -4,49 +4,41 @@ title: 首页
 ---
 
 <section class="hero">
-  <p class="hi">你好,我是<span style="color:var(--accent)"> 你的名字</span></p>
-  <p class="role">前端工程师 / 独立开发者 / 记录者</p>
+  <p class="hi">今日食签</p>
+  <p class="role">每日吃什么,摇一支食签</p>
   <p class="bio">
-    我专注于构建简洁、可维护的 Web 应用,热爱开源与分享。
-    这里是我的个人主页与博客,记录我的技术笔记与生活碎片。
+    灵感来自寺庙求签:摇一摇,抽一支「食签」,签上写着今天适合吃什么,附一句签语。
+    还能问问食神,帮你拿定主意。每天纠结吃什么的时候,就交给它。
   </p>
   <div class="actions">
-    <a class="btn" href="{{ "/blog" | relative_url }}">阅读文章</a>
-    <a class="btn ghost" href="{{ "/contact" | relative_url }}">联系我</a>
+    <a class="btn" href="{{ "/app/" | relative_url }}">🎋 开始求签</a>
+    <a class="btn ghost" href="{{ "/" | relative_url }}#about">关于我</a>
   </div>
 </section>
 
 <section>
-  <h2>近期项目</h2>
+  <h2>它能做什么</h2>
   <div class="cards">
     <div class="card">
-      <span class="tag">开源</span>
-      <h3>项目一</h3>
-      <p>一句话介绍这个项目解决了什么问题,以及亮点在哪里。</p>
+      <span class="tag">求签</span>
+      <h3>摇一支食签</h3>
+      <p>每天纠结吃什么,摇签定夺,随机给你一道菜、配一句签语。</p>
     </div>
     <div class="card">
-      <span class="tag">工具</span>
-      <h3>项目二</h3>
-      <p>说明它的使用场景,附上仓库或演示链接(把文字替换成 <a href="#">链接</a>)。</p>
+      <span class="tag">签语</span>
+      <h3>食签卡</h3>
+      <p>每支签都是一张卡:菜名、寓意与签语,像抽签占卜一样有趣。</p>
     </div>
     <div class="card">
-      <span class="tag">实验</span>
-      <h3>项目三</h3>
-      <p>正在探索中的小作品,描述当前的状态与计划。</p>
+      <span class="tag">食神</span>
+      <h3>问问食神</h3>
+      <p>告诉它今天想吃什么口味,帮你出主意。静态版本地使用本地食神。</p>
     </div>
   </div>
 </section>
 
-<section>
-  <h2>最近在写</h2>
-  <ul class="post-list">
-    {% for post in site.posts limit:3 %}
-      <li>
-        <div>
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        </div>
-        <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
-      </li>
-    {% endfor %}
-  </ul>
+<section id="about">
+  <h2>关于我</h2>
+  <p>我是<span style="color:var(--accent)"> 赤彦</span>,AI 开发者,游戏设计专业学生。</p>
+  <p>「今日食签」是我动手做的小项目,把每天「吃什么」这件小事,做成一支可以摇的签。</p>
 </section>

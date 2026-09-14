@@ -47,6 +47,14 @@ main.container { padding-top: 32px; padding-bottom: 64px; }
 .site-nav { display: flex; gap: 20px; }
 .site-nav a { color: var(--muted); font-size: 15px; }
 .site-nav a:hover { color: var(--accent); text-decoration: none; }
+.site-nav a.nav-cta {
+  color: #fff;
+  background: var(--accent);
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+.site-nav a.nav-cta:hover { opacity: 0.9; }
 
 /* Hero */
 .hero { padding: 24px 0 8px; }

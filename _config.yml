@@ -1,6 +1,6 @@
-title: Akih
-description: 个人网站 & 博客
-author: Akih
+title: 今日食签
+description: 每日吃什么,摇一支食签 · 赤彦
+author: 赤彦
 baseurl: "/Akih.github.io"   # 项目站点(仓库名 Akih.github.io)
 url: "https://he84732158.github.io"
 show_excerpts: true
