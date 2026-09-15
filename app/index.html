@@ -43,8 +43,7 @@
   }
 
   /* 暗色主题覆盖 */
-  @media (prefers-color-scheme: dark) {
-    :root {
+  html[data-theme="dark"] {
       --bg-gradient-start: #0f172a;
       --bg-gradient-mid: #1e293b;
       --bg-gradient-end: #334155;
@@ -73,7 +72,6 @@
       --card-bg-start: #451a03;
       --card-bg-end: #78350f;
       --card-text: #fef3c7;
-    }
   }
 
   body {
@@ -85,6 +83,29 @@
     color: var(--text-primary);
     transition: background 0.5s ease;
   }
+
+  /* ===== 深浅色切换按钮 ===== */
+  .theme-toggle {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 50;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid var(--container-border);
+    background: var(--container-bg);
+    color: var(--text-primary);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    transition: transform 0.2s ease, background 0.3s ease;
+  }
+  .theme-toggle:hover { transform: scale(1.08); }
 
   button,
   input,
@@ -131,12 +152,10 @@
     animation: fallPetal linear infinite;
   }
   
-  @media (prefers-color-scheme: dark) {
-    .petal {
+  html[data-theme="dark"] .petal {
       background: radial-gradient(circle, #fbcfe8 0%, #f472b6 100%);
       opacity: 0.8;
       box-shadow: 0 0 5px rgba(244, 114, 182, 0.5);
-    }
   }
 
   @keyframes fallPetal {
@@ -507,10 +526,8 @@
     transition: border-color 0.3s, background 0.3s;
   }
   
-  @media (prefers-color-scheme: dark) {
-    .llm-input {
+  html[data-theme="dark"] .llm-input {
         background: rgba(0,0,0,0.2);
-    }
   }
 
   .llm-input:focus {
@@ -949,6 +966,8 @@
   <div class="cloud"></div>
 </div>
 
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换深浅色" aria-label="切换深浅色">🌙</button>
+
 <div class="app-container">
   <div class="header">
     <div class="header-title">今日食签</div>
@@ -1124,11 +1143,17 @@
     { name: '火腿炖甲鱼', emoji: '🐢', desc: '徽菜 火腿配甲鱼文火炖，滋补徽帮大菜', fortune: '吉', blessing: '甲鱼聚气，稳稳当当' }
   ];
 
+  // ================= 后端 / Agent 配置 =================
+  // 部署「问食神」后端后（见 backend/README.md），把 agent 接口地址填到下面这行。
+  // 例如：const AGENT_ENDPOINT = 'https://shiqian-agent.你的子域.workers.dev';
+  // 留空（''）时，app 自动降级为本地食神（不联网、不用 key）。
+  const AGENT_ENDPOINT = '';
+
   // DeepSeek agent 接入点：POST /api/chat
   // 请求：{ provider, model, messages, context }
   // 响应：{ reply, foodName?, provider?, model? }
   const AGENT_CONFIG = Object.freeze({
-    endpoint: '/api/chat',
+    endpoint: AGENT_ENDPOINT || '/api/chat',
     provider: 'deepseek',
     model: 'deepseek-chat',
     timeoutMs: 30000,
@@ -1141,6 +1166,26 @@
   let isDrawing = false;
   let isStickOpened = false;
   let history = [];
+
+  // ===== 深浅色主题切换 =====
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    var btn = document.getElementById('themeToggle');
+    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+  function initTheme() {
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved || (prefersDark ? 'dark' : 'light'));
+  }
+  function toggleTheme() {
+    var cur = document.documentElement.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  }
+  initTheme();
 
   function createPetals() {
     const body = document.body;

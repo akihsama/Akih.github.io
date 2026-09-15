@@ -6,6 +6,24 @@
   <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+  <script>
+    (function () {
+      function apply(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        var btn = document.getElementById('siteThemeToggle');
+        if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+      }
+      window.siteToggleTheme = function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        apply(next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      };
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      apply(saved || (prefersDark ? 'dark' : 'light'));
+    })();
+  </script>
 </head>
 <body>
   {% include header.html %}
