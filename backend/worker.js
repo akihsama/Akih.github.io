@@ -11,8 +11,11 @@ const DAILY_MAX_CALLS = 500;                   // 兜底：每天最多调用次
 const ALLOWED_ORIGIN = "https://akihsama.github.io"; // 前端站点来源（CORS 白名单）
 const MICRO_PER_YUAN = 1000000;                // 微元 = 1/1000000 元，避免浮点误差
 
-export default {
-  async fetch(request, env) {
+addEventListener("fetch", (event) => {
+  event.respondWith(handleFetch(event.request));
+});
+
+async function handleFetch(request) {
     const corsHeaders = {
       "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
       "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -114,8 +117,7 @@ export default {
         costYuan: Number((costMicro / MICRO_PER_YUAN).toFixed(4)),
       },
     }, 200, corsHeaders);
-  },
-};
+}
 
 function json(obj, status, extraHeaders) {
   return new Response(JSON.stringify(obj), {

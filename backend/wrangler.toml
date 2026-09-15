@@ -7,7 +7,7 @@ compatibility_date = "2025-06-01"
 # 步骤：在本目录执行  wrangler kv:namespace create spend
 # 命令会打印 "id: xxxxxxxxxx"，把下面占位符换成它（binding 名保持 SPEND 不变）。
 kv_namespaces = [
-  { binding = "SPEND", id = "PASTE_YOUR_KV_NAMESPACE_ID" }
+  { binding = "SPEND", id = "bbe75bb900b24ce78112cd361dd61874" }
 ]
 
 # 机密（不要写进仓库）：  wrangler secret put DEEPSEEK_API_KEY
