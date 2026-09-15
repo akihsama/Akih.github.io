@@ -228,34 +228,3 @@ section h2 {
   .header-inner { height: auto; padding: 12px 0; flex-direction: column; gap: 8px; align-items: flex-start; }
   .support-grid { flex-direction: column; align-items: center; }
 }
-
-
-/* ===== 深浅色切换（首页，与 app 共用 localStorage theme）===== */
-html[data-theme="light"] {
-  --bg: #f4f7ff;
-  --text: #14203f;
-  --muted: #5a6480;
-  --accent: #3b6dff;
-  --accent-strong: #2f5bff;
-  --card: rgba(20,40,90,0.05);
-  --border: rgba(20,40,90,0.12);
-}
-html[data-theme="light"] body { background-color: #f4f7ff; }
-html[data-theme="light"] body::before {
-  background:
-    radial-gradient(1200px 620px at 50% -12%, rgba(120,160,255,0.40) 0%, rgba(244,247,255,0) 60%),
-    radial-gradient(900px 520px at 88% 18%, rgba(150,190,255,0.34) 0%, rgba(244,247,255,0) 55%),
-    linear-gradient(180deg, #eaf1ff 0%, #dbe6ff 46%, #f4f7ff 100%);
-}
-.theme-toggle {
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: var(--text);
-  border-radius: var(--radius);
-  padding: 6px 10px;
-  font-size: 13px;
-  cursor: pointer;
-  white-space: nowrap;
-  font-family: inherit;
-}
-.theme-toggle:hover { border-color: var(--accent); }
