@@ -85,6 +85,30 @@
   }
 
   /* ===== 深浅色切换按钮 ===== */
+  /* wallpaper background */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("/assets/img/wallpaper.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px) brightness(0.85);
+    opacity: 0.6;
+    z-index: -2;
+    pointer-events: none;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(0.5px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
   .theme-toggle {
     position: fixed;
     top: 14px;
