@@ -23,34 +23,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* starry space background */
+/* wallpaper background */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
+  background-image: url("/assets/img/wallpaper.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px) brightness(0.85);
+  opacity: 0.6;
   z-index: -2;
-  background:
-    radial-gradient(1200px 620px at 50% -12%, rgba(72,90,200,0.5) 0%, rgba(10,12,32,0) 60%),
-    radial-gradient(900px 520px at 88% 18%, rgba(130,70,190,0.32) 0%, rgba(10,12,32,0) 55%),
-    linear-gradient(180deg, #0b1026 0%, #141a3f 46%, #05060f 100%);
+  pointer-events: none;
 }
 
 body::after {
   content: "";
   position: fixed;
   inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(0.5px);
   z-index: -1;
   pointer-events: none;
-  opacity: 0.85;
-  background-image:
-    radial-gradient(1.4px 1.4px at 25px 35px, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 90px 120px, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1.6px 1.6px at 160px 70px, rgba(205,218,255,0.85), transparent),
-    radial-gradient(1px 1px at 210px 190px, rgba(255,255,255,0.6), transparent),
-    radial-gradient(1.2px 1.2px at 60px 160px, rgba(185,205,255,0.75), transparent),
-    radial-gradient(1px 1px at 130px 225px, rgba(255,255,255,0.55), transparent);
-  background-size: 240px 240px;
-  background-repeat: repeat;
 }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
