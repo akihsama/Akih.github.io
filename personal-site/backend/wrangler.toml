@@ -1,0 +1,13 @@
+# 问食神 Agent 后端（Cloudflare Worker）配置
+name = "shiqian-agent"
+main = "worker.js"
+compatibility_date = "2025-06-01"
+
+# 限流/记账用的 KV 命名空间。
+# 步骤：在本目录执行  wrangler kv:namespace create spend
+# 命令会打印 "id: xxxxxxxxxx"，把下面占位符换成它（binding 名保持 SPEND 不变）。
+kv_namespaces = [
+  { binding = "SPEND", id = "bbe75bb900b24ce78112cd361dd61874" }
+]
+
+# 机密（不要写进仓库）：  wrangler secret put DEEPSEEK_API_KEY
