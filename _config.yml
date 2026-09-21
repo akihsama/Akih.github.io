@@ -1,8 +1,8 @@
 title: 今日食签
 description: 每日吃什么,摇一支食签 · 赤彦
 author: 赤彦
-baseurl: "/Akih.github.io"   # 项目站点(仓库名 Akih.github.io)
 url: "https://akihsama.github.io"
+baseurl: ""
 show_excerpts: true
 
 exclude:
